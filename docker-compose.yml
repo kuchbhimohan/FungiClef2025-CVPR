@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  fungiclef-tf:
+    build: .
+    container_name: fungiclef-tf-container  # Custom name for easy management
+    working_dir: /app  # Ensure all commands run in /app
+    volumes:
+      - ./:/app
+      - ~/.cache:/root/.cache  # Cache pip dependencies for speed
+    ports:
+      - "8888:8888"  # Jupyter Lab
+    restart: unless-stopped  # Automatically restart if stopped
+    stdin_open: true  # Keeps the container open for interactive use
+    tty: true  # Enables terminal interactivity
